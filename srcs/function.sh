@@ -198,9 +198,9 @@ check_page() {
 		test_is_ko
 		echo "Malloc fail !" >> ${LOGS}
 		echo -n "diff -U3 between test1 and test0: " >> ${LOGS}
-		echo $((${res_test1}-${res_test0})) >> ${LOGS}
+		echo $((res_test1-res_test0)) >> ${LOGS}
 		if [[ ${debug} == "true" ]]; then
-			echo -en "${RED}($((${res_test1}-${res_test0})) - less than 255 pages)${NORMAL} " > ${EXEC}/diff/check_page_$1
+			echo -en "${RED}($((res_test1-res_test0)) - less than 255 pages)${NORMAL} " > ${EXEC}/diff/check_page_$1
 		fi
 		return 1
 	elif [[ ${diff} -ge 255 && ${diff} -le 272 ]]; then
@@ -218,31 +218,31 @@ check_page() {
 	elif [[ ${diff} -gt 1022 ]]; then
 		test_is_ok ${WHITE}
 		if [[ ${debug} == "true" ]]; then
-			echo -en "${WHITE}($((${res_test1}-${res_test0})) - more to 1022 pages) (1/5)${NORMAL} " > ${EXEC}/diff/check_page_$1
+			echo -en "${WHITE}($((res_test1-res_test0)) - more to 1022 pages) (1/5)${NORMAL} " > ${EXEC}/diff/check_page_$1
 		fi
 	fi
 	return 0
 }
 
 check_free() {
-	diff=$((${res_test2}-${res_test0}))
+	diff=$((res_test2-res_test0))
 	if [[ ${diff} -le 3 ]]; then
 		test_is_ok
-		echo -en "Diff between test2.c and test0.c : ${GREEN}$((${res_test2}-${res_test0}))${NORMAL} " > ${EXEC}/diff/check_free_$1
+		echo -en "Diff between test2.c and test0.c : ${GREEN}$((res_test2-res_test0))${NORMAL} " > ${EXEC}/diff/check_free_$1
 		return 0
 	elif [[ ${diff} -le 5 ]]; then
 		test_is_ok ${YELLOW}
 		echo "Free maybe fail !" >> ${LOGS}
 		echo -n "diff -U3 between test2 and test0: " >> ${LOGS}
-		echo $((${res_test2}-${res_test0})) >> ${LOGS}
-		echo -en "Diff between test2.c and test0.c : ${YELLOW}$((${res_test2}-${res_test0}))${NORMAL} "  > ${EXEC}/diff/check_free_$1
+		echo $((res_test2-res_test0)) >> ${LOGS}
+		echo -en "Diff between test2.c and test0.c : ${YELLOW}$((res_test2-res_test0))${NORMAL} "  > ${EXEC}/diff/check_free_$1
 		return 0
 	else
 		test_is_ko
 		echo "Free fail !" >> ${LOGS}
 		echo -n "diff -U3 between test2 and test0: " >> ${LOGS}
-		echo $((${res_test2}-${res_test0})) >> ${LOGS}
-		echo -en "Diff between test2.c and test0.c : ${RED}$((${res_test2}-${res_test0}))${NORMAL} "  > ${EXEC}/diff/check_free_$1
+		echo $((res_test2-res_test0)) >> ${LOGS}
+		echo -en "Diff between test2.c and test0.c : ${RED}$((res_test2-res_test0))${NORMAL} "  > ${EXEC}/diff/check_free_$1
 		return 1
 	fi
 }
