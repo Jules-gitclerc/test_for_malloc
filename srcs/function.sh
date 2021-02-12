@@ -193,7 +193,7 @@ basic_test() {
 }
 
 check_page() {
-	diff=$((${res_test1}-${res_test0}))
+	diff=$((res_test1-res_test0))
 	if [[ ${diff} -lt 255 ]]; then
 		test_is_ko
 		echo "Malloc fail !" >> ${LOGS}
