@@ -1,34 +1,5 @@
 #!/usr/bin/env bash
 #################################
-####### Test author file ########
-#################################
-test_author() {
-	echo -e -n "${BOLD}Author file: "
-	if [[ -f ${MALLOC}/auteur ]] && [[ -z $(diff -w <(cat ${MALLOC}/auteur) <(echo "${LOGNAME}")) ]]; then
-			test_is_ok
-			echo
-	elif [[ -f ${MALLOC}/author ]] && [[ -z $(diff -w <(cat ${MALLOC}/author) <(echo "${LOGNAME}")) ]];then
-			test_is_ok
-	else
-		test_is_ko
-		if [[ ${debug} == "true" ]]; then
-			echo
-			if [[ -f ${MALLOC}/auteur ]]; then
-				diff -U3 -w <(cat ${MALLOC}/auteur) <(echo "${LOGNAME}")
-			elif [[ -f ${MALLOC}/author ]]; then
-				diff -U3 -w <(cat ${MALLOC}/author) <(echo "${LOGNAME}")
-			else
-				echo -e "${BOLD}auteur or author file not found !!${NORMAL}"
-			fi
-		fi
-	fi
-	if [[ ${debug} == "true" ]]; then
-		echo -e "\n----------------------------------------------------"
-	else
-		echo -e "\n----------------------------------------------------"
-	fi
-}
-#################################
 ######### Test Makefile #########
 #################################
 test_makefile() {

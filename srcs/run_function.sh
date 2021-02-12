@@ -2,7 +2,6 @@
 help() {
 	echo "--debug: Permet d'afficher les options de debuggages (erreurs / diff etc.)"
 	echo "--all: Permet de faire un tests complet."
-	echo "--author: Permet de tester le fichier auteur/author"
 	echo "--makefile: Permet de tester le Makefile"
 	echo "--basic: Permet de réaliser des tests basiques"
 	echo "--advanced: Permet de réaliser des tests avancés"
@@ -26,8 +25,6 @@ parse_args() {
 			all="true"
 		elif [[ ${args} == "--debug" ]]; then
 			debug="true"
-		elif [[ ${args} == "--author" ]]; then
-			author="true"
 		elif [[ ${args} == "--makefile" ]]; then
 			makefile="true"
 		elif [[ ${args} == "--basic" ]]; then
@@ -87,7 +84,6 @@ run_with_arg() {
 run() {
 	while true; do
 		echo -e "${BOLD}What would you like to test.${NORMAL}"
-		echo "1) Test author file."
 		echo "2) Test makefile."
 		echo "3) Basic test."
 		echo "4) Advenced test."
@@ -98,7 +94,6 @@ run() {
 		read choice
 		echo
 		case ${choice} in
-			1) test_author;;
 			2) test_makefile;;
 			3) test_basic;;
 			4) test_advanced;;
