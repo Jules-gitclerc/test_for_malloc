@@ -22,24 +22,11 @@ test_makefile() {
 		makefile_2=${GOOD}
 	fi
 	make fclean -C ${MALLOC} 2>> ${LOGS} >> ${LOGS}
-	export HOSTTYPE=trololo
-	NEW_NAME=libmy_malloc_${HOSTTYPE}.so
-	make -C ${MALLOC} 2>> ${LOGS} >> ${LOGS}
-	if [[ -f "${MALLOC}/${NEW_NAME}" ]];then
-		test_is_ok
-		makefile_3=${GOOD}
-	else
-		test_is_ko
-		makefile_3=${WRONG}
-	fi
-	make fclean -C ${MALLOC} 2>> ${LOGS} >> ${LOGS}
-	unset HOSTTYPE
 	make -C ${MALLOC} 2>> ${LOGS} >> ${LOGS}
 	echo
 	if [[ ${debug} == "true" ]]; then
 		echo -e "${BOLD}1)${NORMAL}: Test ${NAME} rules ${makefile_1}"
 		echo -e "${BOLD}2)${NORMAL}: Test fclean rules ${makefile_2}"
-		echo -e "${BOLD}3)${NORMAL}: Test HOSTTYPE ${makefile_3}\n"
 	fi
 }
 
