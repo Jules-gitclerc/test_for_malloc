@@ -433,12 +433,12 @@ bonus_test() {
 		test_is_ko
 		echo
 	fi
-	if [[ -n $(grep "reallocf" ${MALLOC}/**/*.c 2> /dev/null) ]] || [[ -n $(grep "reallocf" ${MALLOC}/*.c 2> /dev/null) ]]; then
+	if [[ -n $(grep "realloc" ${MALLOC}/**/*.c 2> /dev/null) ]] || [[ -n $(grep "realloc" ${MALLOC}/*.c 2> /dev/null) ]]; then
 		echo -en "${BOLD}reallocf: ${NORMAL}"
 		test_is_ok
 		echo
 	else
-		echo -en "${BOLD}reallocf: ${NORMAL}"
+		echo -en "${BOLD}realloc: ${NORMAL}"
 		test_is_ko
 		echo
 	fi
